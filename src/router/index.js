@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DiscoverView from '@/views/DiscoverView.vue'
 import MovieView from '@/views/MovieView.vue'
-import ComingSoonView from '@/views/ComingSoonView.vue'
+import ComingSoonViewLibrary from '@/views/ComingSoonViewLibrary.vue';
+import ComingSoonViewDiscover from '@/views/ComingSoonViewDiscover.vue';
+import ComingSoonViewTickets from '@/views/ComingSoonViewTickets.vue';
 
 const routes = [
   {
@@ -15,9 +17,19 @@ const routes = [
     component: MovieView
   },
   {
-    path: '/coming-soon',
-    name: 'coming-soon',
-    component: ComingSoonView
+    path: '/coming-soon-discover',
+    name: 'coming-soon-discover',
+    component: ComingSoonViewDiscover
+  },
+   {
+    path: '/coming-soon-library',
+    name: 'coming-soon-library',
+    component: ComingSoonViewLibrary
+  },
+   {
+    path: '/coming-soon-tickets',
+    name: 'coming-soon-tickets',
+    component: ComingSoonViewTickets
   }
 ]
 

@@ -4,15 +4,15 @@
         <img :src="cinemaIcon" alt="Cinema">
         <span>Cinema</span>
     </router-link>
-    <router-link to="/coming-soon" class="nav-item">
+    <router-link to="/coming-soon-discover" class="nav-item">
         <img :src="discoverIcon" alt="Discover">
         <span>Discover</span>
     </router-link>
-    <router-link to="/coming-soon" class="nav-item">
+    <router-link to="/coming-soon-tickets" class="nav-item">
         <img :src="ticketsIcon" alt="Tickets">
         <span>Tickets</span>
     </router-link>
-    <router-link to="/coming-soon" class="nav-item">
+    <router-link to="/coming-soon-library" class="nav-item">
         <img :src="libraryIcon" alt="Library">
         <span>Library</span>
     </router-link>

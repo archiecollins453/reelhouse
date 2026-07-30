@@ -3,26 +3,50 @@
 
         <div class="movie-hero">
             <img :src="coverUrl" :alt="movie.title">
-            <button class="back-button" @click="router.back()">←</button>
+            <button class="back-button" @click="router.back()">
+                <img :src="backArrowIcon" alt="Back">
+            </button>
             <h1 class="movie-view-title">{{ movie.title }}</h1>
+            <div class="movie-meta-row">
+                <span class="meta-item">
+                    <img :src="calendarIcon" alt="">
+                    {{ movie.year }}
+                </span>
+                <span class="meta-dot">•</span>
+                <span class="meta-item">
+                    <img :src="clockIcon" alt="">
+                    {{ movie.runtime_minutes }} MIN
+                </span>
+                <span class="meta-dot">•</span>
+                <span class="meta-item movie-view-rating">
+                    <img :src="starIcon" alt="">
+                    {{ movie.rating.toFixed(1) }}
+                </span>
+            </div>
         </div>
 
-        <div class="movie-meta-row">
-            <span>{{ movie.year }}</span>
-            <span>·</span>
-            <span>{{ movie.runtime_minutes }} MIN</span>
-            <span>·</span>
-            <span class="movie-view-rating">★ {{ movie.rating.toFixed(1) }}</span>
-        </div>
 
         <div class="movie-actions">
-            <button class="btn-primary" @click="showAlert">🎟 Book Tickets</button>
-            <button class="btn-secondary" @click="showAlert">▶ Watch Trailer</button>
-            <button class="btn-icon" @click="showAlert">🔖</button>
+            <div class="primary-row">
+                <button class="btn-primary">
+                    <img :src="ticketIcon" alt="">
+                    Book Tickets
+                </button>
+                <div class="btn-spacer"></div>
+            </div>
+            <div class="secondary-row">
+                <button class="btn-secondary">
+                    <img :src="playIcon" alt="">
+                    Watch Trailer
+                </button>
+                <button class="btn-save-icon">
+                    <img :src="saveIcon" alt="">
+                </button>
+            </div>
         </div>
 
         <div class="movie-section">
-            <h3 class="section-label">Classification</h3>
+            <h3 class="section-label"><span class="dot"></span>Classification</h3>
             <div class="tag-row">
                 <span class="tag" v-for="tag in movie.classification" :key="tag">{{ tag }}</span>
             </div>
@@ -38,6 +62,7 @@
                 <h4>Director</h4>
                 <p>{{ movie.director }}</p>
             </div>
+            <hr class="info-divider">
             <div>
                 <h4>Studio</h4>
                 <p>{{ movie.studio }}</p>
@@ -45,12 +70,20 @@
         </div>
 
         <div class="movie-section">
-            <h3 class="section-label">Ensemble Cast</h3>
-            <div class="cast-row">
-                <div class="cast-member" v-for="member in movie.cast" :key="member.name">
-                    <div class="cast-avatar"></div>
-                    <p class="cast-name">{{ member.name }}</p>
-                    <p class="cast-character">{{ member.character }}</p>
+            <div class="cast-header">
+                <h3 class="section-label">Ensemble Cast</h3>
+                <div class="cast-nav">
+                    <button @click="scrollCast(-1)">‹</button>
+                    <button @click="scrollCast(1)">›</button>
+                </div>
+            </div>
+            <div class="cast-box">
+                <div class="cast-row" ref="castRowRef">
+                    <div class="cast-member" v-for="member in movie.cast" :key="member.name">
+                        <div class="cast-avatar"></div>
+                        <p class="cast-name">{{ member.name }}</p>
+                        <p class="cast-character">{{ member.character }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,13 +92,21 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useMovieStore } from '@/stores/movieStore'
+import backArrowIcon from '@/assets/backArrowIcon.svg'
+import calendarIcon from '@/assets/calendarIcon.svg'
+import clockIcon from '@/assets/clockIcon.svg'
+import starIcon from '@/assets/starIcon.svg'
+import ticketIcon from '@/assets/ticketIcon.svg'
+import playIcon from '@/assets/playIcon.svg'
+import saveIcon from '@/assets/saveIcon.svg'
 
 const route = useRoute()
 const router = useRouter()
 const movieStore = useMovieStore()
+const castRowRef = ref(null)
 
 const movie = computed(() => movieStore.titleData)
 
@@ -74,11 +115,11 @@ const coverUrl = computed(() => {
     return `https://www.afrihost.com/assessments/2607-fe-mid/${movie.value.cover_image}`
 })
 
+function scrollCast(direction) {
+    castRowRef.value?.scrollBy({ left: direction * 160, behavior: 'smooth' })
+}
+
 onMounted(async () => {
     await movieStore.loadTitle(route.params.id)
 })
-
-const showAlert = () => {
-    alert("Oops! You caught us! We are still in the process of making this! Please be patient!");
-}
 </script>
