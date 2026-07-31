@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
     overflow-x: hidden;
 }
 
@@ -9,7 +9,9 @@ body {
     color: white;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -36,11 +38,11 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.header-dots span{
-    width:7px;
-    height:7px;
-    background:#FFC16C;
-    border-radius:50%;
+.header-dots span {
+    width: 7px;
+    height: 7px;
+    background: #FFC16C;
+    border-radius: 50%;
     box-shadow: 0 0 0 4px #130D07;
 }
 
@@ -65,14 +67,12 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
 
-    background: linear-gradient(
-        90deg,
-        #d18b2d 0%,
-        #ffc16c 35%,
-        #fff3c6 50%,
-        #ffc16c 65%,
-        #d18b2d 100%
-    );
+    background: linear-gradient(90deg,
+            #d18b2d 0%,
+            #ffc16c 35%,
+            #fff3c6 50%,
+            #ffc16c 65%,
+            #d18b2d 100%);
     background-size: 250% auto;
 
     -webkit-background-clip: text;
@@ -93,8 +93,8 @@ body {
     color: #D6C4B0;
 }
 
-.not-found{
-     margin-top: -2px;
+.not-found {
+    margin-top: -2px;
 
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.65rem;
@@ -104,8 +104,13 @@ body {
 }
 
 @keyframes shimmer {
-    0%   { background-position: 0% 50%; }
-    100% { background-position: 250% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 250% 50%;
+    }
 }
 
 .search-button {
@@ -131,14 +136,12 @@ body {
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
 
-    background: linear-gradient(
-        90deg,
-        #8f5b1b 0%,
-        #d89c44 25%,
-        #fff0b3 50%,
-        #d89c44 75%,
-        #8f5b1b 100%
-    );
+    background: linear-gradient(90deg,
+            #8f5b1b 0%,
+            #d89c44 25%,
+            #fff0b3 50%,
+            #d89c44 75%,
+            #8f5b1b 100%);
 
     box-shadow:
         0 0 6px rgba(255, 193, 108, 0.45),
@@ -206,8 +209,8 @@ body {
 
     padding: 0.7rem 1.4rem;
 
-  background: #3B342C;
-    border: 0px ;
+    background: #3B342C;
+    border: 0px;
     border-radius: 10px;
 
     color: #D6C4B0;
@@ -270,7 +273,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 8%, transparent 55%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 8%, transparent 55%);
     pointer-events: none;
 }
 
@@ -300,8 +303,7 @@ body {
     border-radius: 4px;
 }
 
-.movie-rating .star 
-{
+.movie-rating .star {
     color: white;
 }
 
@@ -373,7 +375,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 25%, transparent 65%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 25%, transparent 65%);
 }
 
 .back-button {
@@ -387,7 +389,7 @@ body {
     border-radius: 50%;
     border: none;
 
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -468,9 +470,9 @@ body {
     justify-content: center;
     gap: 0.5rem;
     white-space: nowrap;
-    max-width:65%;
+    max-width: 65%;
     padding: 1.5rem 0.6rem;
-    
+
     font-family: "IBM Plex Mono", monospace;
     font-size: 1.2rem;
     font-weight: 500;
@@ -625,7 +627,7 @@ body {
     height: 2.2rem;
     border: 1px solid rgba(255, 193, 108, 0.3);
     background: transparent;
-    font-size:1.4rem;
+    font-size: 1.4rem;
     color: #ffffff;
     cursor: pointer;
 }
@@ -646,7 +648,7 @@ body {
     display: none;
 }
 
-.cast-member {    
+.cast-member {
     flex-shrink: 0;
     width: 100px;
     text-align: center;
@@ -673,6 +675,7 @@ body {
     font-size: 0.7rem;
     color: #8E8E8E;
 }
+
 .nav-bar {
     position: fixed;
     bottom: 0;
@@ -704,6 +707,7 @@ body {
     text-decoration: none;
     color: #D6C4B0;
 }
+
 .nav-item.router-link-active {
     color: #FFC16C;
     background: rgba(255, 193, 108, 0.12);

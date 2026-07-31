@@ -13,12 +13,12 @@
       </div>
 
       <button class="search-button" @click="$emit('search-click')">
-      <img :src="searchIcon" alt="Search">
+        <img :src="searchIcon" alt="Search">
       </button>
 
     </div>
 
-     <hr class="header-divider">
+    <hr class="header-divider">
 
   </header>
 </template>

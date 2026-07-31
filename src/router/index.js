@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import DiscoverView from '@/views/DiscoverView.vue'
+import CinemaView from '@/views/CinemaView.vue'
 import MovieView from '@/views/MovieView.vue'
 import ComingSoonViewLibrary from '@/views/ComingSoonViewLibrary.vue';
 import ComingSoonViewDiscover from '@/views/ComingSoonViewDiscover.vue';
@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: DiscoverView
+    component: CinemaView
   },
   {
     path: '/movie/:id',
@@ -21,12 +21,12 @@ const routes = [
     name: 'coming-soon-discover',
     component: ComingSoonViewDiscover
   },
-   {
+  {
     path: '/coming-soon-library',
     name: 'coming-soon-library',
     component: ComingSoonViewLibrary
   },
-   {
+  {
     path: '/coming-soon-tickets',
     name: 'coming-soon-tickets',
     component: ComingSoonViewTickets
@@ -35,7 +35,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+    scrollBehavior() {
+    return { top: 0 }
+  },
 })
 
 export default router

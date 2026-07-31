@@ -28,18 +28,18 @@
 
         <div class="movie-actions">
             <div class="primary-row">
-                <button class="btn-primary">
+                <button class="btn-primary" @click="showAlert">
                     <img :src="ticketIcon" alt="">
                     Book Tickets
                 </button>
                 <div class="btn-spacer"></div>
             </div>
             <div class="secondary-row">
-                <button class="btn-secondary">
+                <button class="btn-secondary" @click="showAlert">
                     <img :src="playIcon" alt="">
                     Watch Trailer
                 </button>
-                <button class="btn-save-icon">
+                <button class="btn-save-icon" @click="showAlert">
                     <img :src="saveIcon" alt="">
                 </button>
             </div>
@@ -80,7 +80,9 @@
             <div class="cast-box">
                 <div class="cast-row" ref="castRowRef">
                     <div class="cast-member" v-for="member in movie.cast" :key="member.name">
-                        <div class="cast-avatar"></div>
+                        <div class="cast-avatar"
+                            :style="{ backgroundImage: `url(${member.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
+                        </div>
                         <p class="cast-name">{{ member.name }}</p>
                         <p class="cast-character">{{ member.character }}</p>
                     </div>
@@ -103,6 +105,27 @@ import ticketIcon from '@/assets/ticketIcon.svg'
 import playIcon from '@/assets/playIcon.svg'
 import saveIcon from '@/assets/saveIcon.svg'
 
+import brianDonLevy from '@/assets/actors/brian_donlevy.jpg'
+import cornelWilde from '@/assets/actors/cornel_wilde.jpg'
+import jeanWallace from '@/assets/actors/jean_wallace.jpg'
+import richardConte from '@/assets/actors/richard_conte.jpg'
+
+import annaKarina from '@/assets/actors/anna_karina.jpg'
+import sadyRebot from '@/assets/actors/sady_rebot.jpg'
+
+import willemDafoe from '@/assets/actors/willem_dafoe.jpg'
+import robertPattinson from '@/assets/actors/robert_pattinson.jpg'
+
+import theBand from '@/assets/actors/the_band.jpg'
+import bobDylan from '@/assets/actors/bob_dylan.jpg'
+import ericClapton from '@/assets/actors/eric_clapton.jpg'
+
+import ryanGosling from '@/assets/actors/ryan_gosling.jpg'
+import harrisonFord from '@/assets/actors/harrison_ford.jpg'
+import anaDeArmas from '@/assets/actors/ana_de_armas.jpg'
+
+
+
 const route = useRoute()
 const router = useRouter()
 const movieStore = useMovieStore()
@@ -119,7 +142,45 @@ function scrollCast(direction) {
     castRowRef.value?.scrollBy({ left: direction * 160, behavior: 'smooth' })
 }
 
+function showAlert() {
+    alert('Oops. You caught us... We are still in the process of developing this...');
+}
+
+function sortCastingImages() {
+    if (movie.value) {
+        if (movie.value.title) {
+            // This is hardcoded. Just for extra features.
+            var title = movie.value.title;
+            if (title === "The Big Combo") {
+                movie.value.cast[0].img = cornelWilde;
+                movie.value.cast[1].img = richardConte;
+                movie.value.cast[2].img = jeanWallace;
+                movie.value.cast[3].img = brianDonLevy;
+            }
+            else if (title === "Vivre sa Vie") {
+                movie.value.cast[0].img = annaKarina;
+                movie.value.cast[1].img = sadyRebot;
+            }
+            else if (title === "The Lighthouse") {
+                movie.value.cast[0].img = willemDafoe;
+                movie.value.cast[1].img = robertPattinson;
+            }
+            else if (title === "The Last Waltz") {
+                movie.value.cast[0].img = theBand;
+                movie.value.cast[1].img = bobDylan;
+                movie.value.cast[2].img = ericClapton;
+            }
+            else if (title === "Blade Runner 2049") {
+                movie.value.cast[0].img = ryanGosling;
+                movie.value.cast[1].img = harrisonFord;
+                movie.value.cast[2].img = anaDeArmas;
+            }
+        }
+    }
+}
+
 onMounted(async () => {
     await movieStore.loadTitle(route.params.id)
+    sortCastingImages();
 })
 </script>

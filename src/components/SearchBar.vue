@@ -1,14 +1,8 @@
 <template>
     <div class="search-container">
         <img :src="searchIcon2" class="search-icon" alt="Search">
-        <input
-            ref="inputRef"
-            type="text"
-            class="search-input"
-            placeholder="Search for films, directors, or eras.."
-            :value="movieStore.searchQuery"
-            @input="movieStore.setSearchQuery($event.target.value)"
-        >
+        <input ref="inputRef" type="text" class="search-input" placeholder="Search for films, directors, or eras.."
+            :value="movieStore.searchQuery" @input="movieStore.setSearchQuery($event.target.value)">
     </div>
 </template>
 
@@ -20,8 +14,7 @@ import searchIcon2 from '@/assets/searchIcon2.svg';
 const movieStore = useMovieStore()
 const inputRef = ref(null)
 
-function focusInput() 
-{
+function focusInput() {
     inputRef.value?.focus()
     inputRef.value?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
